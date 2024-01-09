@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: 15059471
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: rails_api_postgres_development
+test:
+  <<: *default
+  database: rails_api_postgres_test
+production:
+  <<: *default
+  database: rails_api_postgres_production
+  username: rails_api_postgres
+  password: <%= ENV["RAILS_API_POSTGRES_DATABASE_PASSWORD"] %>
