@@ -23,3 +23,12 @@ Things you may want to cover:
 
 * ... 
 
+rails generate controller api/v1/articles index show create update destroy --skip-helper --skip-assets 
+--skip-template-engine --skip-test-framework
+
+rails g model article title:string body:string author:string --skip-helper --skip-assets --skip-template-engine --skip-test-framework
+
+
+bin/rake db:create
+
+bin/rake db:migrate

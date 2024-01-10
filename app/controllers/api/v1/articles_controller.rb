@@ -5,6 +5,12 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
+    article = Article.find_by(id: params[:id])
+    if article
+      render json: article, status: 200
+    else
+      render json: { message: 'Article not found' }
+    end
   end
 
   def create
@@ -21,9 +27,23 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def update
+    article = Article.find_by(id: params[:id])
+    if article
+      article.update(title: article_params[:title], body: article_params[:body], author: article_params[:author])
+      render json: { message: 'Article record update successfully' }
+    else
+      render json: { message: 'Article not found' }
+    end
   end
 
   def destroy
+    article = Article.find_by(id: params[:id])
+    if article
+      article.destroy
+      render json: { message: 'Article record deleted successfully' }
+    else
+      render json: { message: 'Article not found' }
+    end
   end
 
   private
